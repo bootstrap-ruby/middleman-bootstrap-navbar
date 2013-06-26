@@ -1,3 +1,4 @@
+require 'middleman-core/extensions' unless defined?(Middleman::Extensions)
 require 'middleman-bootstrap-navbar/version'
 require 'middleman-bootstrap-navbar/helpers'
 
@@ -12,4 +13,4 @@ module Middleman
   end
 end
 
-::Middleman::Extensions.register :bootstrap_navbar, Middleman::BootstrapNavbar
+Middleman::Extensions.register :bootstrap_navbar, Middleman::BootstrapNavbar

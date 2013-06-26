@@ -1,6 +1,15 @@
+unless defined?(Padrino::Helpers)
+  require 'vendored-middleman-deps/padrino-core-0.11.2/lib/padrino-core/support_lite'
+  require 'vendored-middleman-deps/padrino-helpers-0.11.2/lib/padrino-helpers'
+end
+
 module Middleman
   module BootstrapNavbar
     module Helpers
+      include Padrino::Helpers::TagHelpers
+      include Padrino::Helpers::AssetTagHelpers
+      include Padrino::Helpers::OutputHelpers
+
       def nav_bar(options = {}, &block)
         nav_bar_div options do
           navbar_inner_div do
@@ -11,8 +20,9 @@ module Middleman
 
       def menu_group(options = {}, &block)
         classes = %w(nav)
-        classes << "pull-#{options[:pull]}" if options[:pull].present?
-        content_tag :ul, class: classes.join(' '), &block
+        classes << "pull-#{options[:pull]}" if options.has_key?(:pull)
+        content = block_given? ? capture(&block) : nil
+        content_tag :ul, content, class: classes.join(' ')
       end
 
       def menu_item(name, path = '#', *args)
@@ -22,9 +32,12 @@ module Middleman
         end
       end
 
-      def drop_down(name)
+      def drop_down(name, &block)
         content_tag :li, class: 'dropdown' do
-          drop_down_link(name) + drop_down_list {yield}
+          name_and_caret = "#{name} #{content_tag :b, nil, class: 'caret'}"
+          content = block_given? ? capture(&block) : nil
+          link_to(name_and_caret, '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }) <<
+            content_tag(:ul, content, class: 'dropdown-menu')
         end
       end
 
@@ -42,80 +55,61 @@ module Middleman
 
       def menu_text(text = nil, options = {}, &block)
         pull = options.delete(:pull)
-        pull_class = pull.present? ? "pull-#{pull}" : nil
+        pull_class = pull ? "pull-#{pull}" : nil
         [pull_class, 'navbar-text'].each do |klass|
           options[:class] = [options[:class], klass].compact.join(' ')
         end
-        content_tag :p, options do
-          text || yield
-        end
+        content = text || capture(&block) || nil
+        content_tag :p, content, options
       end
 
       private
 
       def nav_bar_div(options, &block)
-        position = "static-#{options[:static]}" if options[:static]
-        position = "fixed-#{options[:fixed]}"   if options[:fixed]
-        inverse = (options[:inverse].present? && options[:inverse] == true) ? true : false
-
-        content_tag :div, class: nav_bar_css_class(position, inverse) do
-          yield
+        position = case
+        when options.has_key?(:static)
+          "static-#{options[:static]}"
+        when options.has_key?(:fixed)
+          "fixed-#{options[:fixed]}"
         end
+
+        css_class = %w(navbar).tap do |css_class|
+          css_class << "navbar-#{position}" if position
+          css_class << 'navbar-inverse' if options[:inverse]
+        end.join(' ')
+
+        content_tag :div, class: css_class, &block
       end
 
       def navbar_inner_div(&block)
-        content_tag :div, class: 'navbar-inner' do
-          yield
-        end
+        content_tag :div, class: 'navbar-inner', &block
       end
 
       def container_div(brand, brand_link, responsive, fluid, &block)
-        content_tag :div, class: fluid ? 'container-flud' : 'container' do
-          container_div_with_block brand, brand_link, responsive, &block
+        content_tag :div, class: fluid ? 'container-fluid' : 'container' do
+          content = block_given? ? capture(&block) : nil
+          [].tap do |parts|
+            parts << responsive_button if responsive
+            parts << brand_link(brand, brand_link) if brand || brand_link
+            parts << if responsive
+              content_tag :div, content, class: 'nav-collapse collapse'
+            else
+              content
+            end
+          end.join("\n").html_safe
         end
       end
 
-      def container_div_with_block(brand, brand_link, responsive, &block)
-        output = []
-        output << responsive_button if responsive
-        output << brand_link(brand, brand_link) if brand.present? || brand_link.present?
-        output << (responsive ? responsive_div(&block) : capture(&block))
-        output.join("\n").html_safe
-      end
-
-      def nav_bar_css_class(position, inverse = false)
-        css_class = %w(navbar)
-        css_class << "navbar-#{position}" if position.present?
-        css_class << 'navbar-inverse' if inverse
-        css_class.join(' ')
-      end
-
-      def brand_link(name, url = nil, &block)
-        link_to *[name, url || '/'].compact, class: 'brand', &block
+      def brand_link(name, url)
+        link_to name, (url || '/'), class: 'brand'
       end
 
       def responsive_button
-        %(<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>)
-      end
-
-      def responsive_div(&block)
-        content_tag(:div, class: 'nav-collapse collapse', &block)
-      end
-
-      def name_and_caret(name)
-        "#{name} #{content_tag(:b, class: 'caret'){}}".html_safe
-      end
-
-      def drop_down_link(name)
-        link_to(name_and_caret(name), '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown')
-      end
-
-      def drop_down_list(&block)
-        content_tag :ul, class: 'dropdown-menu', &block
+        content_tag :a, class: 'btn btn-navbar', data: { toggle: 'collapse', target: '.nav-collapse' } do
+          (0..2).map do
+            content_tag :span, nil, class: 'icon-bar'
+          end.join("\n").html_safe
+        end
       end
     end
   end
