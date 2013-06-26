@@ -3,7 +3,7 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require 'middleman_bootstrap_navbar/version'
+require 'middleman-bootstrap-navbar/version'
 
 Gem::Specification.new do |gem|
   gem.name          = 'middleman-bootstrap-navbar'
