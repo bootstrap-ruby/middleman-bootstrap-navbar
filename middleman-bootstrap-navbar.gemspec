@@ -21,6 +21,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r(^(test|spec|features)/))
   gem.require_paths = ['lib']
 
+  gem.add_development_dependency 'rake', '>= 10.0.0'
   gem.add_development_dependency 'rspec', '~> 2.13'
   gem.add_development_dependency 'rspec-html-matchers', '~> 0.4.1'
   gem.add_development_dependency 'guard-rspec', '~> 3.0'
