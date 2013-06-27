@@ -12,8 +12,7 @@ module Middleman
       def menu_group(options = {}, &block)
         classes = %w(nav)
         classes << "pull-#{options[:pull]}" if options.has_key?(:pull)
-        content = block_given? ? capture(&block) : nil
-        content_tag :ul, content, class: classes.join(' ')
+        content_tag :ul, nil, class: classes.join(' '), &block
       end
 
       def menu_item(name, path = '#', options = {})
@@ -25,9 +24,8 @@ module Middleman
       def drop_down(name, &block)
         content_tag :li, class: 'dropdown' do
           name_and_caret = "#{name} #{content_tag :b, nil, class: 'caret'}".html_safe
-          content = block_given? ? capture(&block) : nil
           link_to(name_and_caret, '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }) <<
-            content_tag(:ul, content, class: 'dropdown-menu')
+            content_tag(:ul, nil, class: 'dropdown-menu', &block)
         end
       end
 
@@ -48,8 +46,11 @@ module Middleman
         pull = options.delete(:pull)
         classes << "pull-#{pull}" if pull
         options[:class] = classes.join(' ')
-        content = text || capture(&block) || nil
-        content_tag :p, content, options
+        content_tag :p, text, options, &block
+      end
+
+      def brand_link(name, url = nil)
+        link_to name, (url || '/'), class: 'brand'
       end
 
       private
@@ -76,21 +77,16 @@ module Middleman
 
       def container_div(brand, brand_link, responsive, fluid, &block)
         content_tag :div, class: fluid ? 'container-fluid' : 'container' do
-          content = block_given? ? capture(&block) : nil
           [].tap do |parts|
             parts << responsive_button if responsive
             parts << brand_link(brand, brand_link) if brand || brand_link
             parts << if responsive
-              content_tag :div, content, class: 'nav-collapse collapse'
+              content_tag :div, nil, class: 'nav-collapse collapse', &block
             else
-              content
+              capture(&block)
             end
           end.join("\n").html_safe
         end
-      end
-
-      def brand_link(name, url)
-        link_to name, (url || '/'), class: 'brand'
       end
 
       def responsive_button
