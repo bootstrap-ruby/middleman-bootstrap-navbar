@@ -23,6 +23,14 @@ Or install it yourself as:
 
 ## Usage
 
+Activate in `config.rb` in your Middleman app:
+
+```ruby
+activate :bootstrap_navbar
+```
+
+Then generate your navbar:
+
 ```ruby
 = nav_bar fixed: :top, brand: "My great app", responsive: true do
   = menu_group do
