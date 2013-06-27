@@ -25,8 +25,7 @@ module Middleman
         content_tag :ul, content, class: classes.join(' ')
       end
 
-      def menu_item(name, path = '#', *args)
-        options = args.extract_options!
+      def menu_item(name, path = '#', options = {})
         content_tag :li, class: path.sub(%r(/\z), '') == current_page.url.sub(%r(/\z), '') ? 'active' : nil do
           link_to name, path, options
         end
@@ -34,7 +33,7 @@ module Middleman
 
       def drop_down(name, &block)
         content_tag :li, class: 'dropdown' do
-          name_and_caret = "#{name} #{content_tag :b, nil, class: 'caret'}"
+          name_and_caret = "#{name} #{content_tag :b, nil, class: 'caret'}".html_safe
           content = block_given? ? capture(&block) : nil
           link_to(name_and_caret, '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }) <<
             content_tag(:ul, content, class: 'dropdown-menu')
@@ -42,7 +41,7 @@ module Middleman
       end
 
       def drop_down_divider
-        content_tag :li, '', class: 'divider'
+        content_tag :li, nil, class: 'divider'
       end
 
       def drop_down_header(text)
@@ -50,15 +49,14 @@ module Middleman
       end
 
       def menu_divider
-        content_tag :li, '', class: 'divider-vertical'
+        content_tag :li, nil, class: 'divider-vertical'
       end
 
       def menu_text(text = nil, options = {}, &block)
+        classes = %w(navbar-text)
         pull = options.delete(:pull)
-        pull_class = pull ? "pull-#{pull}" : nil
-        [pull_class, 'navbar-text'].each do |klass|
-          options[:class] = [options[:class], klass].compact.join(' ')
-        end
+        classes << "pull-#{pull}" if pull
+        options[:class] = classes.join(' ')
         content = text || capture(&block) || nil
         content_tag :p, content, options
       end

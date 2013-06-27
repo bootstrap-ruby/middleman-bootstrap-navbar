@@ -11,9 +11,9 @@ Gem::Specification.new do |gem|
   gem.platform      = Gem::Platform::RUBY
   gem.authors       = ['Manuel Meurer']
   gem.email         = 'manuel.meurer@gmail.com'
-  gem.summary       = 'Middleman Bootstrap Navbar'
-  gem.description   = 'Middleman Bootstrap Navbar'
-  gem.homepage      = ''
+  gem.summary       = 'Middleman extension to easily generate a Twitter Bootstrap navbar'
+  gem.description   = 'Middleman extension to easily generate a Twitter Bootstrap navbar'
+  gem.homepage      = 'https://github.com/krautcomputing/middleman-bootstrap-navbar'
   gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)

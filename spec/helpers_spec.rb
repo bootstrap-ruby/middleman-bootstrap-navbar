@@ -32,12 +32,7 @@ describe Middleman::BootstrapNavbar::Helpers do
       context 'no parameters' do
         it 'generates the correct HTML' do
           subject.nav_bar.should have_tag(:div, with: { class: 'navbar' })
-          content = subject.nav_bar do
-            'foo'
-          end
-          content.should have_tag(:div, with: { class: 'navbar' }) do
-            with_text 'foo'
-          end
+          subject.nav_bar { 'foo' }.should have_tag(:div, with: { class: 'navbar' }, content: 'foo')
         end
       end
     end
@@ -56,12 +51,8 @@ describe Middleman::BootstrapNavbar::Helpers do
 
     describe 'brand and brank_link parameters' do
       it 'generates the correct HTML' do
-        subject.nav_bar(brand: 'foo').should have_tag(:a, with: { href: '/', class: 'brand' }) do
-          with_text 'foo'
-        end
-        subject.nav_bar(brand: 'foo', brand_link: 'http://google.com').should have_tag(:a, with: { href: 'http://google.com', class: 'brand' }) do
-          with_text 'foo'
-        end
+        subject.nav_bar(brand: 'foo').should have_tag(:a, with: { href: '/', class: 'brand' }, content: 'foo')
+        subject.nav_bar(brand: 'foo', brand_link: 'http://google.com').should have_tag(:a, with: { href: 'http://google.com', class: 'brand' }, content: 'foo')
         subject.nav_bar(brand_link: 'http://google.com').should have_tag(:a, with: { href: 'http://google.com', class: 'brand' })
       end
     end
@@ -93,31 +84,97 @@ describe Middleman::BootstrapNavbar::Helpers do
     context 'no parameters' do
       it 'generates the correct HTML' do
         subject.menu_group.should have_tag(:ul, with: { class: 'nav' })
-        content = subject.menu_group do
-          'foo'
-        end
-        content.should have_tag(:ul, with: { class: 'nav' }) do
-          with_text 'foo'
-        end
+        subject.menu_group { 'foo' }.should have_tag(:ul, with: { class: 'nav' }, content: 'foo')
       end
     end
   end
 
   describe '#menu_item' do
+    let(:current_page) { double('current_page') }
+
+    before do
+      subject.stub(:current_page).and_return(current_page)
+    end
+
+    context 'with current URL' do
+      it 'generates the correct HTML' do
+        current_page.stub(:url).and_return('/')
+        subject.menu_item('foo', '/').should have_tag(:li, with: { class: 'active' }) do
+          with_tag :a, with: { href: '/' }, content: 'foo'
+        end
+
+        current_page.stub(:url).and_return('/foo')
+        subject.menu_item('foo', '/foo').should have_tag(:li, with: { class: 'active' }) do
+          with_tag :a, with: { href: '/foo' }, content: 'foo'
+        end
+      end
+    end
+
+    context 'without current URL' do
+      it 'generates the correct HTML' do
+        current_page.stub(:url).and_return('/foo')
+        subject.menu_item('foo').should have_tag(:li, without: { class: 'active' }) do
+          with_tag :a, with: { href: '#' }, content: 'foo'
+        end
+        subject.menu_item('foo', '/').should have_tag(:li, without: { class: 'active' }) do
+          with_tag :a, with: { href: '/' }, content: 'foo'
+        end
+        subject.menu_item('foo', '/bar').should have_tag(:li, without: { class: 'active' }) do
+          with_tag :a, with: { href: '/bar' }, content: 'foo'
+        end
+
+        current_page.stub(:url).and_return('/')
+        subject.menu_item('foo', '/foo').should have_tag(:li, without: { class: 'active' }) do
+          with_tag :a, with: { href: '/foo' }, content: 'foo'
+        end
+      end
+    end
   end
 
   describe '#drop_down' do
+    it 'generates the correct HTML' do
+      subject.drop_down('foo').should have_tag(:li, with: { class: 'dropdown' }) do
+        with_tag :a, with: { href: '#', class: 'dropdown-toggle', :'data-toggle' => 'dropdown' } do
+          with_text /foo/
+          with_tag :b, with: { class: 'caret' }
+        end
+        with_tag :ul, with: { class: 'dropdown-menu' }
+      end
+
+      subject.drop_down('foo') { 'bar' }.should have_tag(:li, with: { class: 'dropdown' }) do
+        with_tag :a, with: { href: '#', class: 'dropdown-toggle', :'data-toggle' => 'dropdown' } do
+          with_text /foo/
+          with_tag :b, with: { class: 'caret' }
+        end
+        with_tag :ul, with: { class: 'dropdown-menu' }, content: 'bar'
+      end
+    end
   end
 
   describe '#drop_down_divider' do
+    it 'generates the correct HTML' do
+      subject.drop_down_divider.should have_tag(:li, with: { class: 'divider' }, content: '')
+    end
   end
 
   describe '#drop_down_header' do
+    it 'generates the correct HTML' do
+      subject.drop_down_header('foo').should have_tag(:li, with: { class: 'nav-header' }, content: 'foo')
+    end
   end
 
   describe '#menu_divider' do
+    it 'generates the correct HTML' do
+      subject.menu_divider.should have_tag(:li, with: { class: 'divider-vertical' }, content: '')
+    end
   end
 
   describe '#menu_text' do
+    it 'generates the correct HTML' do
+      subject.menu_text('foo').should have_tag(:p, with: { class: 'navbar-text' }, content: 'foo')
+      subject.menu_text { 'foo' }.should have_tag(:p, with: { class: 'navbar-text' }, content: 'foo')
+      subject.menu_text('foo', pull: 'right').should have_tag(:p, with: { class: 'navbar-text pull-right' }, content: 'foo')
+      subject.menu_text(nil, pull: 'left') { 'foo' }.should have_tag(:p, with: { class: 'navbar-text pull-left' }, content: 'foo')
+    end
   end
 end
