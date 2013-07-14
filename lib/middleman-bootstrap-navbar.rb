@@ -1,16 +1,18 @@
-require 'middleman-core/extensions' unless defined?(Middleman::Extensions)
 require 'middleman-bootstrap-navbar/version'
-require 'middleman-bootstrap-navbar/helpers'
+
+require 'bootstrap_navbar'
+BootstrapNavbar.current_url_method = 'current_page.url'
 
 module Middleman
   module BootstrapNavbar
     class << self
       def registered(app)
-        app.helpers Helpers
+        app.helpers ::BootstrapNavbar::Helpers
       end
       alias :included :registered
     end
   end
 end
 
+require 'middleman-core/extensions' unless defined?(Middleman::Extensions)
 Middleman::Extensions.register :bootstrap_navbar, Middleman::BootstrapNavbar

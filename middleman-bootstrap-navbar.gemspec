@@ -11,8 +11,8 @@ Gem::Specification.new do |gem|
   gem.platform      = Gem::Platform::RUBY
   gem.authors       = ['Manuel Meurer']
   gem.email         = 'manuel.meurer@gmail.com'
-  gem.summary       = 'Middleman extension to easily generate a Twitter Bootstrap navbar'
-  gem.description   = 'Middleman extension to easily generate a Twitter Bootstrap navbar'
+  gem.summary       = 'Middleman extension to easily generate a Twitter Bootstrap style navbar'
+  gem.description   = 'Middleman extension to easily generate a Twitter Bootstrap style navbar'
   gem.homepage      = 'https://github.com/krautcomputing/middleman-bootstrap-navbar'
   gem.license       = 'MIT'
 
@@ -26,5 +26,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec-html-matchers', '~> 0.4.1'
   gem.add_development_dependency 'guard-rspec', '~> 3.0'
 
+  gem.add_runtime_dependency 'bootstrap_navbar', '0.0.4'
   gem.add_runtime_dependency 'middleman-core', '>= 3.0'
 end
