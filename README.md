@@ -23,47 +23,19 @@ Or install it yourself as:
 
 ## Requirements
 
-Bootstrap >= 2.0 should be available in your app, at least the CSS. Include at least the dropdown and responsive JS files if you want those features.
+The necessary files from Bootstrap >= 2.0 have to be included separately, they are not part of this gem.
+
+At least the CSS files for the navbar are required, and the JS files for dropdowns and responsive features, if you want to use those in the navbar.
 
 ## Usage
 
-Activate in `config.rb` in your Middleman app:
+Activate the extensions in `config.rb` in your Middleman app:
 
 ```ruby
 activate :bootstrap_navbar
 ```
 
-Then generate your navbar:
-
-```ruby
-= nav_bar fixed: :top, brand: "My great app", responsive: true do
-  = menu_group do
-    = menu_item "Home", root_path
-    = menu_divider
-    = drop_down "Stuff" do
-      = menu_item "One", one_path
-      = menu_item "Two", two_path
-      = menu_item "Three", three_path
-      - if current_user.admin?
-        = menu_item "Admin", admin_path
-    = menu_item "About Us", about_us_path
-    = menu_item "Contact", contact_path
-  = menu_group pull: :right do
-    - if current_user
-      = menu_item "Log Out", log_out_path
-    - else
-      = menu_item "Log In", log_in_path
- ```
-
-Check out the [Twitter Bootstrap Docs](http://twitter.github.io/bootstrap/components.html#navbar) for more info. All components mentioned there should be supported, so you don't need to write any HTML by hand. If there is something missing or wrong HTML is generated, please [open an issue](https://github.com/krautcomputing/middleman-bootstrap-navbar/issues).
-
-To see all supported options, please have a look at the [source file](https://github.com/krautcomputing/middleman-bootstrap-navbar/blob/master/lib/middleman-bootstrap-navbar/helpers.rb), it should be quite readable.
-
-Otherwise: just trust your instincts. Want a nav bar that's fixed to the bottom? Try `nav_bar fixed: :bottom`. Want a nav bar that is static? Try `nav_bar static: :top` or `nav_bar static: :bottom`.
-
-## Inspiration
-
-https://github.com/julescopeland/Rails-Bootstrap-Navbar
+The gem [bootstrap_navbar](https://github.com/krautcomputing/bootstrap_navbar) is used to generate the HTML. Please refer to the README of that gem for detailed instructions on how to generate the navbar.
 
 ## Contributing
 
