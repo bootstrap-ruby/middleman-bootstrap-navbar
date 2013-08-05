@@ -1,6 +1,6 @@
 require 'middleman-bootstrap-navbar/version'
 
-require 'bootstrap_navbar'
+require 'bootstrap-navbar'
 BootstrapNavbar.current_url_method = 'current_page.url'
 
 module Middleman
