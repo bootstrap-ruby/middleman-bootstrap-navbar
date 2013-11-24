@@ -1,4 +1,4 @@
-require 'middleman-bootstrap-navbar/version'
+require_relative 'middleman-bootstrap-navbar/version'
 
 require 'bootstrap-navbar'
 BootstrapNavbar.current_url_method = 'current_page.url'
