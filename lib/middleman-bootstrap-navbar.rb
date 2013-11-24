@@ -1,7 +1,16 @@
 require_relative 'middleman-bootstrap-navbar/version'
 
 require 'bootstrap-navbar'
-BootstrapNavbar.current_url_method = 'current_page.url'
+BootstrapNavbar.configure do |config|
+  config.current_url_method = 'current_page.url'
+
+  if Gem.loaded_specs.keys.include?('bootstrap-sass')
+    require 'bootstrap-sass/version'
+    bootstrap_sass_version = Bootstrap::VERSION
+    bootstrap_version = bootstrap_sass_version[0..4]
+    config.bootstrap_version = bootstrap_version
+  end
+end
 
 module Middleman
   module BootstrapNavbar
