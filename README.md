@@ -35,7 +35,7 @@ Activate the extensions in `config.rb` in your Middleman app:
 activate :bootstrap_navbar
 ```
 
-The gem [bootstrap-navbar](https://github.com/krautcomputing/bootstrap-navbar) is used to generate the HTML. Please refer to the gem's [README](https://github.com/krautcomputing/bootstrap_navbar#usage) and the following Wiki entries for detailed instructions on how to generate the navbar:
+The gem [bootstrap-navbar](https://github.com/krautcomputing/bootstrap-navbar) is used to generate the HTML. Please refer to the gem's [README](https://github.com/krautcomputing/bootstrap-navbar/blob/master/README.md) and the following Wiki entries for detailed instructions on how to generate the navbar:
 
 [Usage with Bootstrap 2.x](https://github.com/krautcomputing/bootstrap-navbar/wiki/Usage-with-Bootstrap-2.x)
 
