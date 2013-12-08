@@ -29,11 +29,29 @@ At least the CSS files for the navbar are required, and the JS files for dropdow
 
 ## Usage
 
+### Activate extension
+
 Activate the extensions in `config.rb` in your Middleman app:
 
 ```ruby
 activate :bootstrap_navbar
 ```
+
+### Set Bootstrap version
+
+This extension needs to know which Bootstrap version you are using, because the navbar HTML looks different in different Bootstrap versions.
+
+If you're using [bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass), you're all set because the Boostrap version will be sniffed from the bootstrap-sass version.
+
+Otherwise set the Bootstrap version when activating the extension:
+
+```ruby
+activate :bootstrap_navbar do |bootstrap_navbar|
+  bootstrap_navbar.bootstrap_version = '3.0.3'
+end
+```
+
+### Output HTML
 
 The gem [bootstrap-navbar](https://github.com/krautcomputing/bootstrap-navbar) is used to generate the HTML. Please refer to the gem's [README](https://github.com/krautcomputing/bootstrap-navbar/blob/master/README.md) and the following Wiki entries for detailed instructions on how to generate the navbar:
 

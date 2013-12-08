@@ -8,7 +8,8 @@ end
 module Middleman
   module BootstrapNavbar
     class << self
-      def registered(app)
+      def registered(app, options = {}, &block)
+        ::BootstrapNavbar.configure(&block) if block_given?
         app.helpers ::BootstrapNavbar::Helpers
       end
       alias :included :registered
