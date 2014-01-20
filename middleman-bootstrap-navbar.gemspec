@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.version       = Middleman::BootstrapNavbar::VERSION
   gem.platform      = Gem::Platform::RUBY
   gem.authors       = ['Manuel Meurer']
-  gem.email         = 'manuel.meurer@gmail.com'
+  gem.email         = 'manuel@krautcomputing.com'
   gem.summary       = 'Middleman extension to easily generate a Twitter Bootstrap style navbar'
   gem.description   = 'Middleman extension to easily generate a Twitter Bootstrap style navbar'
   gem.homepage      = 'https://github.com/bootstrap-ruby/middleman-bootstrap-navbar'
