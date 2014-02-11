@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Middleman-bootstrap-navbar by krautcomputing</title>
+    <title>Middleman-bootstrap-navbar by bootstrap-ruby</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -18,13 +18,13 @@
         <h1>Middleman-bootstrap-navbar</h1>
         <p>Middleman extension to easily generate a Twitter Bootstrap navbar</p>
 
-        <p class="view"><a href="https://github.com/krautcomputing/middleman-bootstrap-navbar">View the Project on GitHub <small>krautcomputing/middleman-bootstrap-navbar</small></a></p>
+        <p class="view"><a href="https://github.com/bootstrap-ruby/middleman-bootstrap-navbar">View the Project on GitHub <small>bootstrap-ruby/middleman-bootstrap-navbar</small></a></p>
 
 
         <ul>
-          <li><a href="https://github.com/krautcomputing/middleman-bootstrap-navbar/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/krautcomputing/middleman-bootstrap-navbar/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/krautcomputing/middleman-bootstrap-navbar">View On <strong>GitHub</strong></a></li>
+          <li><a href="https://github.com/bootstrap-ruby/middleman-bootstrap-navbar/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bootstrap-ruby/middleman-bootstrap-navbar/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bootstrap-ruby/middleman-bootstrap-navbar">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
@@ -32,9 +32,9 @@
 <a name="middleman-bootstrap-navbar" class="anchor" href="#middleman-bootstrap-navbar"><span class="octicon octicon-link"></span></a>Middleman Bootstrap Navbar</h1>
 
 <p><a href="http://badge.fury.io/rb/middleman-bootstrap-navbar"><img src="https://badge.fury.io/rb/middleman-bootstrap-navbar.png" alt="Gem Version"></a>
-<a href="http://travis-ci.org/krautcomputing/middleman-bootstrap-navbar"><img src="https://secure.travis-ci.org/krautcomputing/middleman-bootstrap-navbar.png" alt="Build Status"></a>
-<a href="https://gemnasium.com/krautcomputing/middleman-bootstrap-navbar"><img src="https://gemnasium.com/krautcomputing/middleman-bootstrap-navbar.png" alt="Dependency Status"></a>
-<a href="https://codeclimate.com/github/krautcomputing/middleman-bootstrap-navbar"><img src="https://codeclimate.com/github/krautcomputing/middleman-bootstrap-navbar.png" alt="Code Climate"></a></p>
+<a href="http://travis-ci.org/bootstrap-ruby/middleman-bootstrap-navbar"><img src="https://secure.travis-ci.org/bootstrap-ruby/middleman-bootstrap-navbar.png" alt="Build Status"></a>
+<a href="https://gemnasium.com/bootstrap-ruby/middleman-bootstrap-navbar"><img src="https://gemnasium.com/bootstrap-ruby/middleman-bootstrap-navbar.png" alt="Dependency Status"></a>
+<a href="https://codeclimate.com/github/bootstrap-ruby/middleman-bootstrap-navbar"><img src="https://codeclimate.com/github/bootstrap-ruby/middleman-bootstrap-navbar.png" alt="Code Climate"></a></p>
 
 <p><a href="http://middlemanapp.com/">Middleman</a> extension to easily generate a <a href="http://twitter.github.io/bootstrap/components.html#navbar">Twitter Bootstrap navbar</a></p>
 
@@ -66,12 +66,36 @@
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
+<h3>
+<a name="activate-extension" class="anchor" href="#activate-extension"><span class="octicon octicon-link"></span></a>Activate extension</h3>
+
 <p>Activate the extensions in <code>config.rb</code> in your Middleman app:</p>
 
 <div class="highlight highlight-ruby"><pre><span class="n">activate</span> <span class="ss">:bootstrap_navbar</span>
 </pre></div>
 
-<p>The gem <a href="https://github.com/krautcomputing/bootstrap_navbar">bootstrap_navbar</a> is used to generate the HTML. Please refer to the <a href="https://github.com/krautcomputing/bootstrap_navbar#usage">README</a> of that gem for detailed instructions on how to generate the navbar.</p>
+<h3>
+<a name="set-bootstrap-version" class="anchor" href="#set-bootstrap-version"><span class="octicon octicon-link"></span></a>Set Bootstrap version</h3>
+
+<p>This extension needs to know which Bootstrap version you are using, because the navbar HTML looks different in different Bootstrap versions.</p>
+
+<p>If you're using <a href="https://github.com/thomas-mcdonald/bootstrap-sass">bootstrap-sass</a>, you're all set because the Boostrap version will be sniffed from the bootstrap-sass version.</p>
+
+<p>Otherwise set the Bootstrap version when activating the extension:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="n">activate</span> <span class="ss">:bootstrap_navbar</span> <span class="k">do</span> <span class="o">|</span><span class="n">bootstrap_navbar</span><span class="o">|</span>
+  <span class="n">bootstrap_navbar</span><span class="o">.</span><span class="n">bootstrap_version</span> <span class="o">=</span> <span class="s1">'3.0.3'</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>
+<a name="output-html" class="anchor" href="#output-html"><span class="octicon octicon-link"></span></a>Output HTML</h3>
+
+<p>The gem <a href="https://github.com/bootstrap-ruby/bootstrap-navbar">bootstrap-navbar</a> is used to generate the HTML. Please refer to the gem's <a href="https://github.com/bootstrap-ruby/bootstrap-navbar/blob/master/README.md">README</a> and the following Wiki entries for detailed instructions on how to generate the navbar:</p>
+
+<p><a href="https://github.com/bootstrap-ruby/bootstrap-navbar/wiki/Usage-with-Bootstrap-2.x">Usage with Bootstrap 2.x</a></p>
+
+<p><a href="https://github.com/bootstrap-ruby/bootstrap-navbar/wiki/Usage-with-Bootstrap-3.x">Usage with Bootstrap 3.x</a></p>
 
 <h2>
 <a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
@@ -85,7 +109,7 @@
 </ol>
       </section>
       <footer>
-        <p>This project is maintained by <a href="https://github.com/krautcomputing">krautcomputing</a></p>
+        <p>This project is maintained by <a href="https://github.com/bootstrap-ruby">bootstrap-ruby</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
