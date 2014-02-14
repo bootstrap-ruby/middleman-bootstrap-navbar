@@ -26,6 +26,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard-rspec', '~> 3.0'
   gem.add_development_dependency 'middleman-core', '>= 3.0'
 
-  gem.add_runtime_dependency 'bootstrap-navbar', '~> 1.0.2'
+  gem.add_runtime_dependency 'bootstrap-navbar', '~> 2.0'
   gem.add_runtime_dependency 'middleman-core', '>= 3.0'
 end
