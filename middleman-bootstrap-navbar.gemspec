@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -22,9 +20,10 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rspec', '~> 2.13'
-  gem.add_development_dependency 'guard-rspec', '~> 3.0'
+  gem.add_development_dependency 'appraisal'
+  gem.add_development_dependency 'cucumber',     '~> 2.3'
+  gem.add_development_dependency 'aruba',        '~> 0.14'
 
   gem.add_runtime_dependency 'bootstrap-navbar', '~> 2.0'
-  gem.add_runtime_dependency 'middleman-core', '>= 3.0'
+  gem.add_runtime_dependency 'middleman',        '>= 3.1'
 end

@@ -1,5 +1,10 @@
-require 'rspec/core/rake_task'
+require 'bundler'
+Bundler::GemHelper.install_tasks
 
-RSpec::Core::RakeTask.new(:spec)
+require 'cucumber/rake/task'
 
-task default: :spec
+Cucumber::Rake::Task.new(:features) do |config|
+  config.cucumber_opts = 'features --format pretty --backtrace'
+end
+
+task default: :features
