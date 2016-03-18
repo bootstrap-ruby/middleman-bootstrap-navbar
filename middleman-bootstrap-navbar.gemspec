@@ -11,8 +11,8 @@ Gem::Specification.new do |gem|
   gem.platform      = Gem::Platform::RUBY
   gem.author        = 'Manuel Meurer'
   gem.email         = 'manuel@krautcomputing.com'
-  gem.summary       = 'Middleman extension to easily generate a Twitter Bootstrap style navbar'
-  gem.description   = 'Middleman extension to easily generate a Twitter Bootstrap style navbar'
+  gem.summary       = 'Middleman extension to easily generate a Bootstrap style navbar'
+  gem.description   = 'Middleman extension to easily generate a Bootstrap style navbar'
   gem.homepage      = 'http://bootstrap-ruby.github.io/middleman-bootstrap-navbar'
   gem.license       = 'MIT'
 
