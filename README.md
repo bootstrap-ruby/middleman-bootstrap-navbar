@@ -41,13 +41,13 @@ activate :bootstrap_navbar
 
 This extension needs to know which Bootstrap version you are using, because the navbar HTML looks different in different Bootstrap versions.
 
-If you're using [bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass), you're all set because the Boostrap version will be sniffed from the bootstrap-sass version.
+If you're using [`bootstrap-sass`](https://github.com/twbs/bootstrap-sass), you're all set because the Boostrap version will be sniffed from that gem's version. Make sure to include the `bootstrap-sass` gem before `rails_bootstrap_navbar` in your Gemfile though.
 
-Otherwise set the Bootstrap version when activating the extension:
+If you're not using `bootstrap-sass` but include the Bootstrap CSS and JS some other way, set the Bootstrap version when activating the extension:
 
 ```ruby
 activate :bootstrap_navbar do |bootstrap_navbar|
-  bootstrap_navbar.bootstrap_version = '3.0.3'
+  bootstrap_navbar.bootstrap_version = '4.0.0'
 end
 ```
 
@@ -55,9 +55,11 @@ end
 
 The gem [bootstrap-navbar](https://github.com/bootstrap-ruby/bootstrap-navbar) is used to generate the HTML. Please refer to the gem's [README](https://github.com/bootstrap-ruby/bootstrap-navbar/blob/master/README.md) and the following Wiki entries for detailed instructions on how to generate the navbar:
 
-[Usage with Bootstrap 2.x](https://github.com/bootstrap-ruby/bootstrap-navbar/wiki/Usage-with-Bootstrap-2.x)
+[Usage with Bootstrap 2](https://github.com/bootstrap-ruby/bootstrap-navbar/wiki/Usage-with-Bootstrap-2)
 
-[Usage with Bootstrap 3.x](https://github.com/bootstrap-ruby/bootstrap-navbar/wiki/Usage-with-Bootstrap-3.x)
+[Usage with Bootstrap 3](https://github.com/bootstrap-ruby/bootstrap-navbar/wiki/Usage-with-Bootstrap-3)
+
+[Usage with Bootstrap 4](https://github.com/bootstrap-ruby/bootstrap-navbar/wiki/Usage-with-Bootstrap-4)
 
 ## Contributing
 
