@@ -23,7 +23,15 @@ Or install it yourself as:
 
 ## Requirements
 
-The necessary files from Bootstrap >= 2.0 have to be included separately, they are not part of this gem.
+## Middleman
+
+Middleman >= 3.1
+
+## Bootstrap
+
+Middleman >= 2.0
+
+The necessary Bootstrap files have to be included separately, they are not part of this gem.
 
 At least the CSS files for the navbar are required, and the JS files for dropdowns and responsive features, if you want to use those in the navbar.
 
