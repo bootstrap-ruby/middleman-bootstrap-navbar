@@ -28,6 +28,10 @@ appraise 'middleman_4.1' do
   gem 'middleman', '~> 4.1.0'
 end
 
+appraise 'middleman_4.2' do
+  gem 'middleman', '~> 4.2.0'
+end
+
 appraise 'middleman_master' do
   gem 'middleman', github: 'middleman/middleman'
 end
