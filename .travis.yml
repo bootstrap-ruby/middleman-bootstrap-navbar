@@ -15,3 +15,15 @@ gemfile:
   - gemfiles/middleman_4.0.gemfile
   - gemfiles/middleman_4.1.gemfile
   - gemfiles/middleman_master.gemfile
+matrix:
+  allow_failures:
+    - rvm: 2.4.0
+      gemfile: gemfiles/middleman_3.4.gemfile
+    - rvm: 2.4.0
+      gemfile: gemfiles/middleman_3_stable.gemfile
+    - rvm: 2.4.0
+      gemfile: gemfiles/middleman_4.0.gemfile
+    - rvm: 2.4.0
+      gemfile: gemfiles/middleman_4.1.gemfile
+    - rvm: 2.4.0
+      gemfile: gemfiles/middleman_master.gemfile
