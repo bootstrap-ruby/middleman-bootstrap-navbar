@@ -5,7 +5,7 @@
 [![Dependency Status](https://gemnasium.com/bootstrap-ruby/middleman-bootstrap-navbar.png)](https://gemnasium.com/bootstrap-ruby/middleman-bootstrap-navbar)
 [![Code Climate](https://codeclimate.com/github/bootstrap-ruby/middleman-bootstrap-navbar.png)](https://codeclimate.com/github/bootstrap-ruby/middleman-bootstrap-navbar)
 
-[Middleman](http://middlemanapp.com/) extension to easily generate a [Bootstrap navbar](http://twitter.github.io/bootstrap/components.html#navbar)
+[Middleman](http://middlemanapp.com/) extension to easily generate a [Bootstrap](https://getbootstrap.com/) navbar
 
 ## Installation
 
