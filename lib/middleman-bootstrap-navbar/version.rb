@@ -1,5 +1,5 @@
 module Middleman
   module BootstrapNavbar
-    VERSION = '3.0.2'
+    VERSION = '4.0.0'
   end
 end
