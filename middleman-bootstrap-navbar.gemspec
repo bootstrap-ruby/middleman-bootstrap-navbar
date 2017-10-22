@@ -25,6 +25,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'cucumber',     '~> 2.3'
   gem.add_development_dependency 'aruba',        '~> 0.14'
 
-  gem.add_runtime_dependency 'bootstrap-navbar', '~> 2.0'
+  gem.add_runtime_dependency 'bootstrap-navbar', '~> 3.0'
   gem.add_runtime_dependency 'middleman',        '>= 3.1'
 end
