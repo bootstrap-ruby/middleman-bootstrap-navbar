@@ -29,7 +29,7 @@ Middleman >= 3.1
 
 ## Bootstrap
 
-Middleman >= 2.0
+Bootstrap >= 2.0
 
 The necessary Bootstrap files have to be included separately, they are not part of this gem.
 
