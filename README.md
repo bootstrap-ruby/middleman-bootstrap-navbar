@@ -2,7 +2,6 @@
 
 [![Gem Version](https://badge.fury.io/rb/middleman-bootstrap-navbar.png)](http://badge.fury.io/rb/middleman-bootstrap-navbar)
 [![Build Status](https://secure.travis-ci.org/bootstrap-ruby/middleman-bootstrap-navbar.png)](http://travis-ci.org/bootstrap-ruby/middleman-bootstrap-navbar)
-[![Dependency Status](https://gemnasium.com/bootstrap-ruby/middleman-bootstrap-navbar.png)](https://gemnasium.com/bootstrap-ruby/middleman-bootstrap-navbar)
 [![Code Climate](https://codeclimate.com/github/bootstrap-ruby/middleman-bootstrap-navbar.png)](https://codeclimate.com/github/bootstrap-ruby/middleman-bootstrap-navbar)
 
 [Middleman](http://middlemanapp.com/) extension to easily generate a [Bootstrap](https://getbootstrap.com/) navbar
