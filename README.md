@@ -50,12 +50,15 @@ This gem needs to know which Bootstrap version you are using, because the navbar
 
 If you're using either the [`bootstrap-sass`](https://github.com/twbs/bootstrap-sass) or [`bootstrap`](https://github.com/twbs/bootstrap-rubygem) gem, you're all set because the Boostrap version will be sniffed automatically from those gems' versions. Make sure to include the `bootstrap-sass` or `bootstrap` gem before `rails_bootstrap_navbar` in your Gemfile though.
 
-If you include the Bootstrap CSS and JS some other way, you need to set the Bootstrap version when activating the extension:
+However, if you include the Bootstrap CSS and JS some other way, you need to set the Bootstrap version before activating the extension:
 
 ```ruby
-activate :bootstrap_navbar do |bootstrap_navbar|
-  bootstrap_navbar.bootstrap_version = '4.0.0'
+# Only necessary if you don't use the `bootstrap-sass` or `bootstrap` gems.
+::BootstrapNavbar.configure do |config|
+  config.bootstrap_version = '4.0.0'
 end
+
+activate :bootstrap_navbar
 ```
 
 ### Output HTML
